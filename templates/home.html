@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TODO APP</title>
+</head>
+<body>
+    <header>
+        TODO APP
+    </header>
+    <hr>
+    <div class="container">
+        <form action="/" method="post">
+            <div class="container">
+                <label for="task">Task: </label>
+                <input type="text" name="task" id="task" placeholder="Enter the TASK...">
+            </div>
+            <br>
+            <div class="container">
+                <label for="info">Description:</label>
+                <input type="text" name="info" id="info" placeholder="Important Information...">
+            </div>
+            <br>
+            <div class="container">
+                <label for="priority">Choose a Priority:</label>
+                <select name="priority" id="priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <br>
+            <button id="save">SAVE</button>
+        </form>
+    </div>
+    <hr>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">Task</th>
+                <th scope="col">Description</th>
+                <th scope="col">Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{row['sno']}}</td>
+                <td>{{row['task']}}</td>
+                <td>{{row['info']}}</td>
+                <td>{{row['priority']}}</td>
+                <td><a href="/delete/{{row.sno}}"><button>Done</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
