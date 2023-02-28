@@ -3,6 +3,13 @@ import sqlite3
 
 app = Flask(__name__)
 
+try:
+    with sqlite3.connect('database.db') as conn:
+        conn.execute('CREATE TABLE tasks (sno INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, info TEXT, priority TEXT)')
+    print('Tasks Created')
+except:
+    print("Table already exist in DB")
+
 @app.route('/',methods=['GET','POST'])
 def home():
     if request.method == 'POST':
@@ -31,6 +38,14 @@ def delete(sno):
     conn.commit()
     return redirect('/')
 
+@app.route('/clear', methods=['GET','POST'])
+def clear():
+    conn = sqlite3.connect('database.db')
+    curr = conn.cursor()
+    curr.execute("DROP TABLE tasks")
+    curr.execute('CREATE TABLE tasks (sno INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, info TEXT, priority TEXT)')
+    conn.commit()
+    return redirect('/')
+
 if __name__ == "__main__":
     app.run(debug=True)
-

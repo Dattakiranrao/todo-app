@@ -1,59 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>TODO APP</title>
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+    <link href="{{url_for('static',filename='css/dist/output.css')}}" rel="stylesheet">
+
 </head>
+
 <body>
-    <header>
+    <header class="flex justify-center items-center text-blue-500 text-3xl">
         TODO APP
     </header>
-    <hr>
-    <div class="container">
-        <form action="/" method="post">
-            <div class="container">
-                <label for="task">Task: </label>
-                <input type="text" name="task" id="task" placeholder="Enter the TASK...">
-            </div>
-            <br>
-            <div class="container">
-                <label for="info">Description:</label>
-                <input type="text" name="info" id="info" placeholder="Important Information...">
-            </div>
-            <br>
-            <div class="container">
+    <div>
+        <form class="flex justify-center items-center flex-col my-10" action="/" method="post">
+            <div class="flex flex-col space-y-6 p-10 rounded-lg border-2 hover:border-blue-400  w-[fit-content] shadow">
+            <input class="cursor-text border-2 border-gray-400 hover:border-2 hover:border-blue-500 rounded-lg px-2 py-2" type="text"
+                name="task" id="task" placeholder="Enter the TASK...">
+            <input class="cursor-text border-2 border-gray-400 hover:border-2 hover:border-blue-500 rounded-lg px-2 py-2" type="text"
+                name="info" id="info" placeholder="Task Information...">
+            <!-- flex justify-center items-center -->
+            <div class="ml-2">
                 <label for="priority">Choose a Priority:</label>
-                <select name="priority" id="priority">
+                <select class="bg-blue-500 cursor-pointer px-1 py-2 rounded-md text-center" name="priority" id="priority">
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
             </div>
-            <br>
-            <button id="save">SAVE</button>
+            <button class="w-[6rem] m-auto bg-blue-500 hover:bg-white text-white font-semibold hover:text-blue-700 py-2 px-4 hover:border hover:border-blue-500 border-blue-500 rounded" id="save">SAVE</button>
+        </div>
         </form>
     </div>
-    <hr>
-    <br>
-    <table class="table">
-        <thead>
+    <h1 class="text-center my-6 text-2xl text-blue-500 uppercase">Tasks</h1>
+    <table class="w-full text-sm text-center text-gray-500 dark:text-gray-40">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col">Sno</th>
-                <th scope="col">Task</th>
-                <th scope="col">Description</th>
-                <th scope="col">Priority</th>
+                <th class="px-6 py-3" scope="col">Sno</th>
+                <th class="px-6 py-3" scope="col">Task</th>
+                <th class="px-6 py-3" scope="col">Description</th>
+                <th class="px-6 py-3" scope="col">Priority</th>
+                <th class="px-6 py-3"><a href="/clear"><button class=" bg-blue-500 hover:bg-white text-white font-semibold hover:text-blue-700 py-2 px-4 hover:border hover:border-blue-500 border-blue-500 rounded">New Task Table</button></a></th>
             </tr>
         </thead>
         <tbody>
             {% for row in rows %}
-            <tr>
-                <td>{{row['sno']}}</td>
-                <td>{{row['task']}}</td>
-                <td>{{row['info']}}</td>
-                <td>{{row['priority']}}</td>
-                <td><a href="/delete/{{row.sno}}"><button>Done</button></a></td>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{row['sno']}}</td>
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{row['task']}}</td>
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{row['info']}}</td>
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{row['priority']}}</td>
+                <td><a href="/delete/{{row.sno}}"><button class="bg-blue-500 hover:bg-white text-white font-semibold hover:text-blue-700 py-2 px-4 hover:border hover:border-blue-500 border-blue-500 rounded">Done</button></a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </body>
+
 </html>
