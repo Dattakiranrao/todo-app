@@ -16,13 +16,13 @@ Open http://localhost:3000 to view it in the browser.
 - npm init -y
 - npm install -D tailwindcss postcss autoprefixer vite
 - npx tailwindcss init -p
-- In package.json change
-	"scripts": {
-    "start": "vite",
-    "watch-css": "npx tailwindcss -i ./static/css/src/input.css -o ./static/css/dist/output.css --watch"
+- In package.json change\
+	"scripts": {\
+    "start": "vite",\
+    "watch-css": "npx tailwindcss -i ./static/css/src/input.css -o ./static/css/dist/output.css --watch"\
   },
 - In tailwind.config.js change content: {"./templates/**/*.{html,htm}"}
-- Create input.css and add
+- Create input.css and add\
 	@tailwind base;\
 	@tailwind components;\
 	@tailwind utilities;
